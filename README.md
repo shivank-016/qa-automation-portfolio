@@ -19,6 +19,7 @@ here: turning a recurring manual QA task into a repeatable, documented tool.
 | [`playwright-event-verification`](playwright-event-verification) | Drives a public demo e-commerce site through login → checkout with Playwright, verifying each step's outcome against expectation |
 | [`qa-report-generator`](qa-report-generator) | Turns a JSON list of test results into a styled, color-coded Pass/Fail Excel report |
 | [`claude-code-skill-sample`](claude-code-skill-sample) | A packaged, reusable "skill" that combines the two above into a repeatable verification workflow |
+| [`bot-handling-verification`](bot-handling-verification) | Verifies a fraud/bot-detection gate: bots are silently blocked (without tipping off the UI) and analytics events are tagged `is_bot`/`bot_kind`, while genuine visitors pass through unaffected |
 
 Each folder has its own README with specifics, sample input/output, and —
 for the Playwright project — a genuine failing check with an explanation,

@@ -1,0 +1,66 @@
+[
+  {
+    "name": "[Automated session] Bot flag detected as expected",
+    "category": "Bot Handling",
+    "status": "pass",
+    "expected": "detectBot() returns a boolean is_bot flag",
+    "actual": "is_bot=True, bot_kind=webdriver_flag,missing_chrome_object,no_plugins",
+    "notes": ""
+  },
+  {
+    "name": "[Automated session] Gated action responds correctly for this visitor type",
+    "category": "Bot Handling",
+    "status": "pass",
+    "expected": "Bot visitor: action blocked. Human visitor: action succeeds.",
+    "actual": "is_bot=True, status message: 'ERROR: action blocked for automated visitors'",
+    "notes": ""
+  },
+  {
+    "name": "[Automated session] Gated button stays visible regardless of bot status",
+    "category": "Bot Handling",
+    "status": "pass",
+    "expected": "Button remains visible even when the action is blocked (no tipping off automated traffic)",
+    "actual": "Button visible: True",
+    "notes": ""
+  },
+  {
+    "name": "[Automated session] Analytics events are tagged with is_bot/bot_kind",
+    "category": "Event Verification",
+    "status": "pass",
+    "expected": "Every emitted event includes is_bot matching the detected value",
+    "actual": "3 events captured, all tagged is_bot=True: True",
+    "notes": ""
+  },
+  {
+    "name": "[Human-like session] Bot flag detected as expected",
+    "category": "Bot Handling",
+    "status": "pass",
+    "expected": "detectBot() returns a boolean is_bot flag",
+    "actual": "is_bot=False, bot_kind=None",
+    "notes": ""
+  },
+  {
+    "name": "[Human-like session] Gated action responds correctly for this visitor type",
+    "category": "Bot Handling",
+    "status": "pass",
+    "expected": "Bot visitor: action blocked. Human visitor: action succeeds.",
+    "actual": "is_bot=False, status message: 'Generated content successfully.'",
+    "notes": ""
+  },
+  {
+    "name": "[Human-like session] Gated button stays visible regardless of bot status",
+    "category": "Bot Handling",
+    "status": "pass",
+    "expected": "Button remains visible even when the action is blocked (no tipping off automated traffic)",
+    "actual": "Button visible: True",
+    "notes": ""
+  },
+  {
+    "name": "[Human-like session] Analytics events are tagged with is_bot/bot_kind",
+    "category": "Event Verification",
+    "status": "pass",
+    "expected": "Every emitted event includes is_bot matching the detected value",
+    "actual": "3 events captured, all tagged is_bot=False: True",
+    "notes": ""
+  }
+]

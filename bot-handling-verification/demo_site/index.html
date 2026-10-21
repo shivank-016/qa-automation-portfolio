@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Demo Site &mdash; Bot Handling Sample</title>
+</head>
+<body>
+  <h1>Demo Site</h1>
+  <button id="generate-btn">Generate AI Content</button>
+  <p id="status"></p>
+
+  <script>
+    // --- Simplified stand-in for a real fingerprint-based bot detector  ---
+    // (a real implementation would use a library like FingerprintJS BotD;
+    // this is a minimal, dependency-free heuristic for demo purposes)
+    function detectBot() {
+      const signals = [];
+
+      if (navigator.webdriver === true) signals.push('webdriver_flag');
+      if (!window.chrome && navigator.userAgent.includes('Chrome')) signals.push('missing_chrome_object');
+      if (navigator.plugins.length === 0) signals.push('no_plugins');
+      if (navigator.languages === undefined || navigator.languages.length === 0) signals.push('no_languages');
+
+      const isBot = signals.length > 0;
+      const botKind = isBot ? signals.join(',') : null;
+      return { isBot, botKind };
+    }
+
+    const { isBot, botKind } = detectBot();
+    window.__isBot = isBot;
+    window.__botKind = botKind;
+    window.__events = [];
+
+    // --- Analytics stub: every event is tagged with is_bot / bot_kind ---
+    function track(eventName, props) {
+      window.__events.push(Object.assign({ event: eventName, is_bot: isBot, bot_kind: botKind }, props || {}));
+    }
+
+    track('site_viewed', { path: '/' });
+
+    document.getElementById('generate-btn').addEventListener('click', function () {
+      const statusEl = document.getElementById('status');
+      track('generate_clicked', {});
+
+      if (isBot) {
+        // Button stays visible and clickable for a bot visitor, but the
+        // action itself is blocked -- this is the behavior being verified:
+        // don't tip off automated traffic by hiding the control, just
+        // refuse to perform the gated action.
+        statusEl.textContent = 'ERROR: action blocked for automated visitors';
+        track('generate_blocked', { reason: 'bot_detected' });
+        return;
+      }
+
+      statusEl.textContent = 'Generated content successfully.';
+      track('generate_succeeded', {});
+    });
+  </script>
+</body>
+</html>
