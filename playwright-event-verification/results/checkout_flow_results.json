@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Login: valid credentials reach inventory page",
+    "category": "Functional",
+    "status": "pass",
+    "expected": "Redirected to /inventory.html after valid login",
+    "actual": "Current URL: https://www.saucedemo.com/inventory.html",
+    "notes": ""
+  },
+  {
+    "name": "Cart: badge reflects number of items added",
+    "category": "Functional",
+    "status": "pass",
+    "expected": "Cart badge shows '2' after adding two items",
+    "actual": "Cart badge shows '2'",
+    "notes": ""
+  },
+  {
+    "name": "Cart page: lists the correct items",
+    "category": "Functional",
+    "status": "pass",
+    "expected": "Cart contains: ['Sauce Labs Backpack', 'Sauce Labs Bike Light']",
+    "actual": "Cart contains: ['Sauce Labs Backpack', 'Sauce Labs Bike Light']",
+    "notes": ""
+  },
+  {
+    "name": "Checkout overview: shows a total price",
+    "category": "Event Verification",
+    "status": "pass",
+    "expected": "Order summary includes a 'Total: $X' line",
+    "actual": "Found: Total: $43.18",
+    "notes": ""
+  },
+  {
+    "name": "Checkout complete: confirmation message fires",
+    "category": "Event Verification",
+    "status": "pass",
+    "expected": "Completion page shows a 'Thank you for your order' style message",
+    "actual": "Found: Thank you for your order!",
+    "notes": ""
+  },
+  {
+    "name": "Network: flow pages were requested as expected",
+    "category": "Event Verification",
+    "status": "fail",
+    "expected": "At least 3 flow-related page requests captured (inventory/cart/checkout)",
+    "actual": "Captured 0 matching requests",
+    "notes": "Genuine finding, not a script bug: saucedemo.com's inventory/cart/checkout transitions are client-side JS routing with no full page load, so no matching network request fires. A real event-verification harness needs to know whether a flow step is expected to produce a network/analytics call before asserting on it \u2014 this is exactly the kind of false assumption that a verification script needs to catch and a QA engineer needs to correct."
+  }
+]

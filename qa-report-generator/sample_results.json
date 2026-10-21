@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Login: valid credentials reach dashboard",
+    "category": "Functional",
+    "status": "pass",
+    "expected": "User is redirected to /dashboard after valid login",
+    "actual": "Redirected to /dashboard",
+    "notes": ""
+  },
+  {
+    "name": "Login: invalid password shows error",
+    "category": "Functional",
+    "status": "pass",
+    "expected": "Inline error message rendered, no redirect",
+    "actual": "Error message rendered as expected",
+    "notes": ""
+  },
+  {
+    "name": "Checkout: add_to_cart event fires",
+    "category": "Event Verification",
+    "status": "pass",
+    "expected": "add_to_cart network event fires with product_id and price",
+    "actual": "Event fired with matching product_id and price",
+    "notes": ""
+  },
+  {
+    "name": "Checkout: checkout_completed event fires",
+    "category": "Event Verification",
+    "status": "fail",
+    "expected": "checkout_completed event fires with order_total",
+    "actual": "Event did not fire within 5s timeout after order confirmation",
+    "notes": "Reproduced 3/3 times; filed as a defect"
+  },
+  {
+    "name": "Cart: quantity update recalculates total",
+    "category": "Functional",
+    "status": "pass",
+    "expected": "Cart total updates immediately on quantity change",
+    "actual": "Total recalculated correctly",
+    "notes": ""
+  },
+  {
+    "name": "Regression: product search returns relevant results",
+    "category": "Regression",
+    "status": "pass",
+    "expected": "Search for 'backpack' returns only backpack items",
+    "actual": "Results matched expected set",
+    "notes": ""
+  },
+  {
+    "name": "Regression: sort by price (low to high)",
+    "category": "Regression",
+    "status": "fail",
+    "expected": "Items ordered ascending by price",
+    "actual": "Two items were out of order at positions 3 and 4",
+    "notes": "Likely a stable-sort tie-breaking bug"
+  }
+]
